@@ -29,7 +29,7 @@ if not os.path.exists(csv_file_path):
     print(f"{csv_filename} not found. Creating a new file.")
     with open(csv_file_path, mode='w', newline='') as csvfile:
         writer = csv.writer(csvfile)
-        writer.writerow(['Index', '> RM 100,000.00', 'status', '>= 3 times && SAME account', 'status', '<= RM 1,000.00 && >= 10 times', 'status', '> RM 1,000,000.00', 'status', ' JomPAY >= 3 times', 'status'])  # Header row
+        writer.writerow(['Name', '> RM 100,000.00', 'status', '>= 3 times && SAME account', 'status', '<= RM 1,000.00 && >= 10 times', 'status', '> RM 1,000,000.00', 'status', ' JomPAY >= 3 times', 'status'])  # Header row
 else:
     print(f"{csv_filename} found. Opening the file.")
 
