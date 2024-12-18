@@ -6,7 +6,7 @@ import smtplib, mimetypes, csv, requests, os, re
 from datetime import datetime, timedelta
 import pandas as pd
 from jinja2 import Template
-from requests.packages.urllib3.exceptions import InsecureRequestWarning # type: ignore # Suppress only the InsecureRequestWarning
+from requests.packages.urllib3.exceptions import InsecureRequestWarning # Suppress only the InsecureRequestWarning
 
 # Email credentials
 SMTP_SERVER = '10.28.51.200'
@@ -14,7 +14,7 @@ SMTP_PORT = 25
 EMAIL_ADDRESS = 'AIOpsMBSB@coreconsulting.asia'
 TO_EMAIL = 'adrian@coreconsulting.asia'
 PLATFORM = 'CIB'
-API_TOKEN = ''
+API_TOKEN = os.getenv("API_TOKEN")
 requests.packages.urllib3.disable_warnings(InsecureRequestWarning)
 
 # Create the email
@@ -88,7 +88,7 @@ def send_email(email_data, criteria_num):
 
 def summary_email(): 
   msg = MIMEMultipart("alternative")
-  msg['Subject'] = f'[AUTOMATION] - [CIB] - Monetary Transaction Summary {today_date} '
+  msg['Subject'] = f'[AUTOMATION] - [CIB] - Monetary Transaction Summary {yesterday_date} '
   msg['From'] = EMAIL_ADDRESS
   msg['To'] = TO_EMAIL
 
@@ -204,7 +204,7 @@ def summary_email():
 
 def monitoring():
   header = {'Authorization': f'Api-Token {API_TOKEN}'}
-  api_url = ""
+  api_url = os.getenv("API_URL")
   request = requests.get(api_url, headers=header, verify=False)
 
   # Fetch and process the JSON data
@@ -217,11 +217,13 @@ def monitoring():
         dimension = data.get("dimensionMap", {}).get('Dimension', '')
         dimension = dimension.rsplit('-')
         time = datetime.fromtimestamp(data.get('timestamps', [])[0] / 1000 - 60).strftime('%H:%M:%S')
+        print(dimension)
         while len(dimension) != 5:
           if dimension[1][0] not in '123456789':
             dimension = ["-".join(dimension[:2])] + dimension[2:]
           else:
             dimension = dimension[0:2] + ["-".join(dimension[2:4])] + dimension[4:]
+        print(dimension)
         dimension_sender, dimension_sender_id, dimension_beneficiary_name, dimension_transfer_type, dimension_amount = map(str.strip, dimension)
         dimension_sender_id = int(dimension_sender_id)
         dimension_amount = float(dimension_amount)
