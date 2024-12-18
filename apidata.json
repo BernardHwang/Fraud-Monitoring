@@ -1,0 +1,49 @@
+{ 
+  "totalCount":1,
+  "nextPageKey":null,
+  "resolution":"1m",
+  "result":[{
+    "metricId":"calc:service._cib_fraudmonitoring",
+    "dataPointCountRatio":1.0E-7,
+    "dimensionCountRatio":1.0E-5,
+    "data":[{
+      "dimensions":[
+        "SERVICE-C5D7A4E898F7D602",
+        "MBSB BANK BERHAD-1005018100011430 - SHAHRAZI BINTI HASAN - IBG_FUND_TRANSFER - 16987.0"
+        ],
+      "dimensionMap":{
+        "dt.entity.service":"SERVICE-C5D7A4E898F7D602",
+        "Dimension":"MBSB BANK BERHAD-1005018100011430 - QH - JomPAY - 1.0"
+        },
+      "timestamps":[
+        1733297700000,
+        1733297760000,
+        1733297820000
+      ],
+      "values":[
+        1,
+        null,
+        null
+      ]
+    },{
+      "dimensions":[
+        "SERVICE-C5D7A4E898F7D602",
+        "MBSB BANK BERHAD-1005018100011430 - SHAHRAZI BINTI HASAN - IBG_FUND_TRANSFER - 16987.0"
+        ],
+      "dimensionMap":{
+        "dt.entity.service":"SERVICE-C5D7A4E898F7D602",
+        "Dimension":"MAY BANK - 10182608822 - B - Normal - 1.0"
+        },
+      "timestamps":[
+        1733297700000,
+        1733297760000,
+        1733297820000
+      ],
+      "values":[
+        1,
+        null,
+        null
+      ]
+    }]
+  }]
+}
