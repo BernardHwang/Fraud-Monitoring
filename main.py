@@ -217,13 +217,11 @@ def monitoring():
         dimension = data.get("dimensionMap", {}).get('Dimension', '')
         dimension = dimension.rsplit('-')
         time = datetime.fromtimestamp(data.get('timestamps', [])[0] / 1000 - 60).strftime('%H:%M:%S')
-        print(dimension)
         while len(dimension) != 5:
           if dimension[1][0] not in '123456789':
             dimension = ["-".join(dimension[:2])] + dimension[2:]
           else:
             dimension = dimension[0:2] + ["-".join(dimension[2:4])] + dimension[4:]
-        print(dimension)
         dimension_sender, dimension_sender_id, dimension_beneficiary_name, dimension_transfer_type, dimension_amount = map(str.strip, dimension)
         dimension_sender_id = int(dimension_sender_id)
         dimension_amount = float(dimension_amount)
